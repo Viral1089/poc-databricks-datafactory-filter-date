@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input Form</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h2>Select query task</h2>
+		<form method="post" action={{url_for('display_files')}}>
+<!--			<div class="form-group">-->
+<!--				<label for="input1">Input 1:</label>-->
+<!--				<input type="text" class="form-control" id="input1" placeholder="Enter input 1">-->
+<!--			</div>-->
+			<div class="form-group">
+				<label for="input2">Input:</label>
+				<select name='query'  class="form-control" id="input2" required>
+					<option value="">-- Select an option --</option>
+					<option value="hottest_station/Hottest station with date">Can you tell me the hottest day till now ?</option>
+					<option value="coldest_station/Coldest station with date">Can you tell me the coldest day till now ?</option>
+					<option value="worst Rainfall station/Worst Rainfall Station">Can you tell me the name of station which has worst rainfall ?</option>
+					<option value="best rainfall station/Best Rainfall Station">Can you tell me the name of station which has best rainfall ?</option>
+                    <option value="most cloudy station/Most Cloudy Weather">Can you tell me the name of station which has most cloudy weather ?</option>
+                    <option value="least cloudy station/Less Cloudy Weather">Can you tell me the name of station which has less cloudy weather ?</option>
+                    <option value="most sunshine/Most Sunshine Duration Station">Can you tell me the name of station which has most sunshine duration ?</option>
+                    <option value="least sunshine/Worst Clear Station">Can you tell me the name of station which has least sunshine duration ?</option>
+					<option value="hottest_month/Hottest Month">Can you tell me the hottest month of a year ?</option>
+					<option value="coldest_month/Coldest Month">Can you tell me the clodest month of a year ?</option>
+				</select>
+			</div>
+<!--			<div class="form-group">-->
+<!--				<label for="input3">Input 3:</label>-->
+<!--				<input type="text" class="form-control" id="input3" placeholder="Enter input 3">-->
+<!--			</div>-->
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br>
+		
+        {%if  value %}
+			{% if "month" in k %}
+				<div class="container">
+					<h2>{{title}}</h2>
+					<div class="table-responsive">
+						Month: {{ value[0]|safe }}<br>
+						Average Temperature: {{ value[1]|safe }}
+					</div>
+				</div>
+			{% endif %}
+			{% if "station" in k and ("cloudy" in k or "rainfall" in k)%}
+				<div class="container">
+					<h2>{{title}}</h2>
+					<div class="table-responsive">
+						County : {{ value[0]|safe }}<br>
+						Station : {{ value[1]|safe }}
+					</div>
+				</div>
+			{% endif %}
+			{% if "station" in k and "Rainfall" in k%}
+				<div class="container">
+					<h2>{{title}}</h2>
+					<div class="table-responsive">
+						County : {{ value[0]|safe }}<br>
+						Station : {{ value[1]|safe }}
+					</div>
+				</div>
+			{% endif %}
+			{% if ("most" in k and "sunshine" in k )or ("least" in k and "sunshine" in k)%}
+				<div class="container">
+					<h2>{{title}}</h2>
+					<div class="table-responsive">
+						County : {{ value[0]|safe }}<br>
+						Station : {{ value[1]|safe }}
+					</div>
+				</div>
+			{% endif %}
+			{% if ("hottest" in k and "station" in k) or ("coldest" in k and "station" in k)%}
+				<div class="container">
+					<h2>{{title}}</h2>
+					<div class="table-responsive">
+						County: {{ value[0]|safe }}<br>
+						Station : {{ value[1]|safe }}<br>
+						Date : {{ value[2]|safe }}
+					</div>
+				</div>
+			{% endif %}
+        {% endif %}
+
+
+
+
+
+
+<!--			<h3>Recommend movie for user</h3>-->
+
+<!--			<h3>Filter Query according to date</h3>-->
+
+	</div>
+	<div class="container mt-5">
+      <h1>Filter Data</h1>
+      <form action="{{url_for('datefilter')}}" method="POST">
+        <div class="form-group">
+          <label for="county-name">County Name</label>
+          <input type="text" class="form-control" id="county-name" name="county-name" placeholder="Enter County Name">
+        </div>
+        <div class="form-group">
+          <label for="station-name">Station Name</label>
+          <input type="text" class="form-control" id="station-name" name="station-name" placeholder="Enter Station Name">
+        </div>
+        <div class="form-group">
+          <label for="filter">Filter</label>
+          <select class="form-control" id="filter" name="filter">
+            <option>Maximum</option>
+            <option>Minimum</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="criteria">Criteria</label>
+          <select class="form-control" id="criteria" name="criteria">
+            <option>Temperature</option>
+            <option>Sunshine</option>
+            <option>Visibility</option>
+            <option>Rainfall</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="start-date">Start Date</label>
+          <input type="date" class="form-control" id="start-date" name="start-date">
+        </div>
+        <div class="form-group">
+          <label for="end-date">End Date</label>
+          <input type="date" class="form-control" id="end-date" name="end-date">
+        </div>
+        <button type="submit" class="btn btn-primary">Filter Data</button>
+      </form>
+	  <br>
+
+	  {%if  table %}
+				<div class="container">
+					<h4>{{title}}</h4>
+					<div class="table-responsive">
+						 {% for key in table %}
+						 <p>{{key}} - {{table[key]}}</p>
+						 {% endfor %}
+					</div>
+				</div>
+			{% endif %}
+    </div>
+
+<!--	 Bootstrap JS-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+        // function selectElement(id, valueToSelect) {    
+        //     let element = document.getElementById(id);
+        //     element.value = valueToSelect;
+        // }
+
+        // selectElement('input2', '{question}');
+        $("#input2").val('{{question}}');
+
+    </script>
+</body>
+</html>

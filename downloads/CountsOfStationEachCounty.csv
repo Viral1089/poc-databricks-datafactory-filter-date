@@ -1,0 +1,16 @@
+county,approx_count_distinct(station)
+Dublin,3
+Galway,2
+Cork,4
+Mayo,4
+Cavan,1
+Clare,1
+Carlow,1
+Kerry,1
+Roscommon,1
+Donegal,2
+Westmeath,1
+Sligo,1
+Wexford,1
+Tipperary,1
+Meath,1

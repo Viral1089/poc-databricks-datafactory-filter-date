@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input Form</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h2>Select query task</h2>
+		<form method="post" action={{url_for('display_files')}}>
+<!--			<div class="form-group">-->
+<!--				<label for="input1">Input 1:</label>-->
+<!--				<input type="text" class="form-control" id="input1" placeholder="Enter input 1">-->
+<!--			</div>-->
+			<div class="form-group">
+				<label for="input2">Input:</label>
+				<select name='query'  class="form-control" id="input2" required>
+					<option value="">-- Select an option --</option>
+					<option value="AvgTempForeachStationOfCounty/Average temperature of each county and station">Can you tell me the average temperature of county and station in dataset?</option>
+					<option value="AvgPerMonth/Average Information of data for each month">Can you tell me the temperature,dew point,vapore pressure in different stations for each month ?</option>
+					<option value="AvgPerYear/Average Information of data for each year">Can you tell me the information about wheather per year for each station ?</option>
+					<option value="InfoWhenRaining/Weather Information when it's Raining">Can you tell me the weather information when it's raining in each station ?</option>
+                    <option value="InfoWhenNotRaining/Weather Information when it's not Raining">Can you tell me the weather information when it's not raining in each station  ?</option>
+                    <option value="MaxMinPerDay/Maximum and minimum information of each component of wheather each day">Can you tell me the maximum and minimum information per day ?</option>
+                    <option value="MaxMinEachMonth/Maximum and minimum information of each component of weather per month">Can you tell me the maximum and minimum information per month ?</option>
+                    <option value="TempInfoOfEachStation/Temperature Information of each station till now">Can you tell me the temperature information of stations  ?</option>
+					<option value="TempInfoOfLastYear/Temperature Information of last year">Can you tell me the temperature information of last year ?</option>
+					<option value=" TempInfoOfLastYear/Temperature Comparision Of Two Years">Can you tell me the details of 2018 and 2019</option>
+				</select>
+			</div>
+<!--			<div class="form-group">-->
+<!--				<label for="input3">Input 3:</label>-->
+<!--				<input type="text" class="form-control" id="input3" placeholder="Enter input 3">-->
+<!--			</div>-->
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+		<br>
+<!--			<h3>Recommend movie for user</h3>-->
+
+<!--			<h3>Filter Query according to date</h3>-->
+
+	</div>
+
+<!--	 Bootstrap JS-->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
